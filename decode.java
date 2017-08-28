@@ -15,7 +15,7 @@ public class decode{
 
 		huffman a = new huffman();
 		a.recreate(key);
-		String data = a.decode(line, a.root);
+		String data = a.decode(line);
 		decoded.write(data);
 		decoded.flush();
 		decoded.close();
@@ -35,6 +35,7 @@ class huffman{
 	String ans = "";
 	boolean[] vis = new boolean[256];
 	node root = new node();
+	String main;
 	void add(String file, String key){
 		this.createfreq(file);
 		this.maketree();
@@ -111,27 +112,31 @@ class huffman{
 		}
 		this.maketree();
 	}
-	String decode(String a, node curr){
-		if(a.length()==1){
-			if(a.charAt(0)=='0'){
-				return (char)curr.left.ch + "";
+	String decode(String a){
+		node curr = root;
+		int i=0;
+		String ans = "";
+		while(i<a.length()-1){
+			if(curr.left==null && curr.right==null){
+				ans = ans + (char)curr.ch;
+				curr = root;
+			}
+			else if(a.charAt(i)=='1'){
+				curr = curr.right;
+				i++;
 			}
 			else{
-				return (char)curr.right.ch + "";
+				ans = ans + (char)curr.left.ch;
+				curr = root;
+				i++;
 			}
+		}
+		if(a.charAt(i)=='0'){
+			ans = ans + (char)curr.left.ch;
 		}
 		else{
-			if(curr.left==null && curr.right==null){
-				return (char)curr.ch  + decode(a.substring(0), root);
-			}
-			if(a.charAt(0)=='0'){
-				//System.out.println((char)curr.left.ch);
-				return ((char)curr.left.ch + decode(a.substring(1), root));
-			}
-			else{
-				//System.out.println((char)curr.ch);
-				return decode(a.substring(1), curr.right);
-			}
+			ans = ans + (char)curr.right.ch;
 		}
+		return ans;
 	}
 }
