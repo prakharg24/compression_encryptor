@@ -1,6 +1,6 @@
 # compression_encryptor
 
-Use the program to convert text file of any format into compressed and encrypted file containing just 0's and 1's. Encryption requires a key which the user must remember to decrypt the files again otherwise there is no way to decrypt it back.
+Use the program to convert text file of any format into compressed and encrypted binary file. Encryption requires a key which the user must remember to decrypt the files again otherwise there is no way to decrypt it back.
 
 Compression & Encryption
 ------------------------
@@ -27,4 +27,4 @@ Extraction & Decryption
 
 Contributors
 ------------
-Prahar Ganesh
+Prakhar Ganesh
