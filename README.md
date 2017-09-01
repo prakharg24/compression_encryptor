@@ -1,5 +1,7 @@
 # compression_encryptor
 
+*Incomplete right now*
+
 Use the program to convert text file of any format into compressed and encrypted binary file. Encryption requires a key which the user must remember to decrypt the files again otherwise there is no way to decrypt it back.
 
 Compression & Encryption
